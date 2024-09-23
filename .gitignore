@@ -1,5 +1,5 @@
 .DS_Store
-#/public
+/public
 /node_modules
 Thumbs.db
 *.log
