@@ -3,13 +3,40 @@
   <entry>
     <title>第一条Blog，记录一下</title>
     <url>/2024/09/22/f-blog/</url>
-    <content><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>从业三年，渺茫半生，想到用blog记录一下，日常碰到的问题，希望能够有所意思</p>
+    <content><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>这是第一条Blog，记录一下。</p>
 ]]></content>
       <categories>
-        <category>杂记</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于Spring生命周期的思考和AOP应用</title>
+    <url>/2024/09/25/%E5%85%B3%E4%BA%8ESpring%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8CAOP%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次构造器引起的Mybatis-plus查询问题</title>
+    <url>/2025/06/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E8%B5%B7%E7%9A%84Mybatis-plus%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在Mybatis-plus框架的BO中使用lomobo的@Builder注解时，使用mapper进行查询时，会报类型转换异常，比如明明是String类型的字段，查询时却报错说是Integer类型的字段。</p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>@Builder注解会生成一个有参构造器，而原来的JavaBean中的无参构造器被覆盖了。<br>Mybatis-plus在查询时会默认使用无参构造器来创建对象，将对象实例化之后再通过字段名注入。<br><strong>但是如果没有无参构造器，就会使用有参构造器否则将无法实例化，并且按照字段顺序遍历进行注入，比如发生将String插入Integer，就会导致类型转换异常。</strong><br>总结下来，个人感觉这里应该有个Warn，提示一下，Mybatis-plus在查询时需要无参构造器。否则单纯的按顺序遍历有种硬着头皮上的感觉。</p>
+<h3 id="如下图"><a href="#如下图" class="headerlink" title="如下图"></a>如下图</h3><p><img src="/../images/1.jpg"><br><img src="/../images/2.jpg"></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>使用lombok的@NoArgsConstructor注解来生成无参构造器，这样Mybatis-plus就可以正常查询了。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Mybatis-plus</tag>
+        <tag>Lombok</tag>
       </tags>
   </entry>
 </search>
